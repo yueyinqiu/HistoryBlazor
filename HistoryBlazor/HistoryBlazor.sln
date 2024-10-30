@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HistoryBlazor", "HistoryBlazor\HistoryBlazor.csproj", "{6140CC36-46BD-49D5-BA60-EDA67B8D8F48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{F8373349-9D4C-40E4-AD06-C2BF774567FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6140CC36-46BD-49D5-BA60-EDA67B8D8F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6140CC36-46BD-49D5-BA60-EDA67B8D8F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6140CC36-46BD-49D5-BA60-EDA67B8D8F48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8373349-9D4C-40E4-AD06-C2BF774567FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8373349-9D4C-40E4-AD06-C2BF774567FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8373349-9D4C-40E4-AD06-C2BF774567FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8373349-9D4C-40E4-AD06-C2BF774567FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
