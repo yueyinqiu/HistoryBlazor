@@ -40,11 +40,13 @@ partial class Home
     }
     private async Task GetStateAsync()
     {
-        getOutput = (await this.History.GetStateAsync<JsonElement>()).GetRawText();
+        var json = await this.History.GetStateAsync<JsonElement>();
+        getOutput = json.GetRawText();
     }
     private void GetStateSync()
     {
-        getOutput = (this.History.Sync.GetState<JsonElement>()).GetRawText();
+        var json = this.History.Sync.GetState<JsonElement>();
+        getOutput = json.GetRawText();
     }
 
     private int deltaInput = 0;
@@ -84,5 +86,21 @@ partial class Home
     private void ReplaceStateSync()
     {
         this.History.Sync.ReplaceState(JsonSerializer.Deserialize<JsonElement>(stateInput), urlInput);
+    }
+    private async Task PushStateWithCurrentStateAsync()
+    {
+        await this.History.PushStateWithCurrentStateAsync(urlInput);
+    }
+    private void PushStateWithCurrentStateSync()
+    {
+        this.History.Sync.PushStateWithCurrentState(urlInput);
+    }
+    private async Task ReplaceStateWithCurrentStateAsync()
+    {
+        await this.History.ReplaceStateWithCurrentStateAsync(urlInput);
+    }
+    private void ReplaceStateWithCurrentStateSync()
+    {
+        this.History.Sync.ReplaceStateWithCurrentState(urlInput);
     }
 }

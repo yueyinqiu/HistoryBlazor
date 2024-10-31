@@ -17,9 +17,9 @@ public interface ISyncHistoryBlazor : IHistoryBlazor
         DynamicallyAccessedMemberTypes.PublicFields |
         DynamicallyAccessedMemberTypes.PublicProperties)] T>();
     void Go(int delta = 0);
-    void PushState<T>(T data, Uri url);
-    void ReplaceState<T>(T data, Uri url);
     void PushState<T>(T data, string? url = null);
+    void PushStateWithCurrentState(string? url = null);
     void ReplaceState<T>(T data, string? url = null);
+    void ReplaceStateWithCurrentState(string? url = null);
     void SetScrollRestoration(ScrollRestoration value);
 }

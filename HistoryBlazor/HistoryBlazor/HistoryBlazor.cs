@@ -160,19 +160,21 @@ internal sealed class HistoryBlazor(IJSRuntime jsRuntime) : IAsyncDisposable, IS
         var module = await moduleTask;
         await module.InvokeVoidAsync("pushState", cancellationToken, data, url);
     }
-    public async Task PushStateAsync<T>(
-        T data, Uri url,
-        CancellationToken cancellationToken = default)
-    {
-        await this.PushStateAsync(data, url.ToString(), cancellationToken);
-    }
     public void PushState<T>(T data, string? url = null)
     {
         syncModule!.InvokeVoid("pushState", data, url);
     }
-    public void PushState<T>(T data, Uri url)
+
+    public async Task PushStateWithCurrentStateAsync(
+        string? url = null,
+        CancellationToken cancellationToken = default)
     {
-        this.PushState(data, url.ToString());
+        var module = await moduleTask;
+        await module.InvokeVoidAsync("pushStateWithCurrentState", cancellationToken, url);
+    }
+    public void PushStateWithCurrentState(string? url = null)
+    {
+        syncModule!.InvokeVoid("pushStateWithCurrentState", url);
     }
 
     public async Task ReplaceStateAsync<T>(
@@ -182,18 +184,20 @@ internal sealed class HistoryBlazor(IJSRuntime jsRuntime) : IAsyncDisposable, IS
         var module = await moduleTask;
         await module.InvokeVoidAsync("replaceState", cancellationToken, data, url);
     }
-    public async Task ReplaceStateAsync<T>(
-        T data, Uri url,
-        CancellationToken cancellationToken = default)
-    {
-        await this.ReplaceStateAsync(data, url.ToString(), cancellationToken);
-    }
     public void ReplaceState<T>(T data, string? url = null)
     {
         syncModule!.InvokeVoid("replaceState", data, url);
     }
-    public void ReplaceState<T>(T data, Uri url)
+
+    public async Task ReplaceStateWithCurrentStateAsync(
+        string? url = null,
+        CancellationToken cancellationToken = default)
     {
-        this.ReplaceState(data, url.ToString());
+        var module = await moduleTask;
+        await module.InvokeVoidAsync("replaceStateWithCurrentState", cancellationToken, url);
+    }
+    public void ReplaceStateWithCurrentState(string? url = null)
+    {
+        syncModule!.InvokeVoid("replaceStateWithCurrentState", url);
     }
 }
