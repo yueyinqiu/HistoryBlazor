@@ -9,7 +9,7 @@
 		<RootNamespace>$(AssemblyName)</RootNamespace>
 		<IsTrimmable>true</IsTrimmable>
 
-		<Version>0.0.1</Version>
+		<Version>0.0.2</Version>
 		<PackageId>$(AssemblyName)</PackageId>
 		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
