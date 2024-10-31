@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
+
 namespace HistoryBlazor;
 
 public interface ISyncHistoryBlazor : IHistoryBlazor
@@ -7,12 +9,17 @@ public interface ISyncHistoryBlazor : IHistoryBlazor
     void Forward();
     int GetLength();
     ScrollRestoration GetScrollRestoration();
-    void GetState();
+
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed.")]
+    T GetState<
+        [DynamicallyAccessedMembers(
+        DynamicallyAccessedMemberTypes.PublicConstructors |
+        DynamicallyAccessedMemberTypes.PublicFields |
+        DynamicallyAccessedMemberTypes.PublicProperties)] T>();
     void Go(int delta = 0);
     void PushState<T>(T data, Uri url);
     void ReplaceState<T>(T data, Uri url);
     void PushState<T>(T data, string? url = null);
     void ReplaceState<T>(T data, string? url = null);
-    void ReplaceStateWithCurrentState(string url);
     void SetScrollRestoration(ScrollRestoration value);
 }

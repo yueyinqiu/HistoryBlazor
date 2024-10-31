@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
+
 namespace HistoryBlazor;
 
 public interface IHistoryBlazor
@@ -10,12 +12,17 @@ public interface IHistoryBlazor
     Task ForwardAsync(CancellationToken cancellationToken = default);
     Task<int> GetLengthAsync(CancellationToken cancellationToken = default);
     Task<ScrollRestoration> GetScrollRestorationAsync(CancellationToken cancellationToken = default);
-    Task GetStateAsync(CancellationToken cancellationToken = default);
+
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed.")]
+    Task<T> GetStateAsync<
+        [DynamicallyAccessedMembers(
+        DynamicallyAccessedMemberTypes.PublicConstructors |
+        DynamicallyAccessedMemberTypes.PublicFields |
+        DynamicallyAccessedMemberTypes.PublicProperties)] T>(CancellationToken cancellationToken = default);
     Task GoAsync(int delta = 0, CancellationToken cancellationToken = default);
     Task PushStateAsync<T>(T data, Uri url, CancellationToken cancellationToken = default);
     Task ReplaceStateAsync<T>(T data, Uri url, CancellationToken cancellationToken = default);
     Task PushStateAsync<T>(T data, string? url = null, CancellationToken cancellationToken = default);
     Task ReplaceStateAsync<T>(T data, string? url = null, CancellationToken cancellationToken = default);
-    Task ReplaceStateWithCurrentStateAsync(string url, CancellationToken cancellationToken = default);
     Task SetScrollRestorationAsync(ScrollRestoration value, CancellationToken cancellationToken = default);
 }

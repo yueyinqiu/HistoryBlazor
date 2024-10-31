@@ -10,7 +10,7 @@ public static class ServiceCollectionExtensions
         object? key = null)
     {
         services.Add(new ServiceDescriptor(
-            typeof(ISyncHistoryBlazor), key, typeof(HistoryBlazor), lifeTime));
+            typeof(IHistoryBlazor), key, typeof(HistoryBlazor), lifeTime));
         return services;
     }
 }

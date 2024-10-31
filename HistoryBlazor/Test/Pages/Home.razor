@@ -6,3 +6,40 @@
 
 <PageTitle>Home</PageTitle>
 
+<div>
+    <button @onclick="BackAsync">BackAsync</button>
+    <button @onclick="BackSync" style="background-color: azure">BackSync</button>
+    <button @onclick="ForwardAsync">ForwardAsync</button>
+    <button @onclick="ForwardSync" style="background-color: azure">ForwardSync</button>
+</div>
+
+<div>
+    <textarea>@getOutput</textarea>
+    <button @onclick="GetLengthAsync">GetLengthAsync</button>
+    <button @onclick="GetLengthSync" style="background-color: azure">GetLengthSync</button>
+    <button @onclick="GetScrollRestorationAsync">GetScrollRestorationAsync</button>
+    <button @onclick="GetScrollRestorationSync" style="background-color: azure">GetScrollRestorationSync</button>
+    <button @onclick="GetStateAsync">GetStateAsync</button>
+    <button @onclick="GetStateSync" style="background-color: azure">GetStateSync</button>
+</div>
+
+<div>
+    <InputNumber TValue="int" @bind-Value="deltaInput"></InputNumber>
+    <button @onclick="GoAsync">GoAsync</button>
+    <button @onclick="GoSync" style="background-color: azure">GoSync</button>
+</div>
+
+<div>
+    <InputText @bind-Value="scrollRestorationInput"></InputText>
+    <button @onclick="SetScrollRestorationAsync">SetScrollRestorationAsync</button>
+    <button @onclick="SetScrollRestorationSync" style="background-color: azure">SetScrollRestorationSync</button>
+</div>
+
+<div>
+    <InputText @bind-Value="urlInput"></InputText>
+    <InputTextArea @bind-Value="stateInput"></InputTextArea>
+    <button @onclick="PushStateAsync">PushStateAsync</button>
+    <button @onclick="PushStateSync" style="background-color: azure">PushStateSync</button>
+    <button @onclick="ReplaceStateAsync">ReplaceStateAsync</button>
+    <button @onclick="ReplaceStateSync" style="background-color: azure">ReplaceStateSync</button>
+</div>

@@ -40,10 +40,5 @@ export function pushState(data, url)
 
 export function replaceState(data, url)
 {
-    history.pushState(data, "", url);
-}
-
-export function replaceStateWithCurrentState(url)
-{
-    history.pushState(history.data, "", url);
+    history.replaceState(data, "", url);
 }

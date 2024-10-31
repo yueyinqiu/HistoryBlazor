@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
@@ -18,10 +18,10 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>yueyinqiu</Authors>
 		<Description>
-			
+			Use window.history in blazor apps. Supports synchronous calls in WebAssembly.
 		</Description>
 		<PackageTags>
-			Blazor;Wasm;WebAssembly;
+			Blazor;Wasm;WebAssembly;History;
 		</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>

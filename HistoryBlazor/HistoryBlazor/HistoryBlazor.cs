@@ -1,4 +1,5 @@
 using Microsoft.JSInterop;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HistoryBlazor;
 
@@ -96,15 +97,26 @@ internal sealed class HistoryBlazor(IJSRuntime jsRuntime) : IAsyncDisposable, IS
         syncModule!.InvokeVoid("setScrollRestoration", value.Value);
     }
 
-    public async Task GetStateAsync(
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed.")]
+    public async Task<T> GetStateAsync<
+        [DynamicallyAccessedMembers(
+        DynamicallyAccessedMemberTypes.PublicConstructors | 
+        DynamicallyAccessedMemberTypes.PublicFields | 
+        DynamicallyAccessedMemberTypes.PublicProperties)] T>(
         CancellationToken cancellationToken = default)
     {
         var module = await moduleTask;
-        await module.InvokeVoidAsync("getState", cancellationToken);
+        return await module.InvokeAsync<T>("getState", cancellationToken);
     }
-    public void GetState()
+
+    [RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed.")]
+    public T GetState<
+        [DynamicallyAccessedMembers(
+        DynamicallyAccessedMemberTypes.PublicConstructors |
+        DynamicallyAccessedMemberTypes.PublicFields |
+        DynamicallyAccessedMemberTypes.PublicProperties)] T>()
     {
-        syncModule!.InvokeVoid("getState");
+        return syncModule!.Invoke<T>("getState");
     }
 
     public async Task BackAsync(
@@ -138,7 +150,7 @@ internal sealed class HistoryBlazor(IJSRuntime jsRuntime) : IAsyncDisposable, IS
     }
     public void Go(int delta = 0)
     {
-        syncModule!.InvokeVoid("forward", delta);
+        syncModule!.InvokeVoid("go", delta);
     }
 
     public async Task PushStateAsync<T>(
@@ -183,17 +195,5 @@ internal sealed class HistoryBlazor(IJSRuntime jsRuntime) : IAsyncDisposable, IS
     public void ReplaceState<T>(T data, Uri url)
     {
         this.ReplaceState(data, url.ToString());
-    }
-
-    public async Task ReplaceStateWithCurrentStateAsync(
-        string url,
-        CancellationToken cancellationToken = default)
-    {
-        var module = await moduleTask;
-        await module.InvokeVoidAsync("replaceStateWithCurrentState", cancellationToken, url);
-    }
-    public void ReplaceStateWithCurrentState(string url)
-    {
-        syncModule!.InvokeVoid("replaceStateWithCurrentState", url);
     }
 }
